@@ -1,0 +1,724 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://inspiredbroadcast.net/webservices/fobt/epos" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://inspiredbroadcast.net/webservices/fobt/epos" xmlns:intf="http://inspiredbroadcast.net/webservices/fobt/epos" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns1="urn:iepos.venueservice.fobt.inspiredgaming.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema targetNamespace="urn:iepos.venueservice.fobt.inspiredgaming.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="EposOperationResult">
+    <sequence>
+     <element name="errorCode" type="xsd:int"/>
+     <element name="errorString" type="xsd:string"/>
+     <element name="version" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="IssueUnauthCreditResponse">
+    <sequence>
+     <element name="creditAmount" type="xsd:int"/>
+     <element name="eposOperationResult" type="tns1:EposOperationResult"/>
+    </sequence>
+   </complexType>
+   <complexType name="AuthoriseTerminalResponse">
+    <sequence>
+     <element name="eposOperationResult" type="tns1:EposOperationResult"/>
+    </sequence>
+   </complexType>
+   <complexType name="EnquireCashTerminalResponse">
+    <sequence>
+     <element name="barPosition" type="xsd:string"/>
+     <element name="periodStart" type="xsd:string"/>
+     <element name="periodEnd" type="xsd:string"/>
+     <element name="totalCashIn" type="xsd:int"/>
+     <element name="totalCashOut" type="xsd:int"/>
+     <element name="totalLoadedCash" type="xsd:int"/>
+     <element name="errorCode" type="xsd:int"/>
+     <element name="errorString" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOf_tns1_EnquireCashTerminalResponse">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns1:EnquireCashTerminalResponse[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="EnquireCashResponse">
+    <sequence>
+     <element name="eposOperationResult" type="tns1:EposOperationResult"/>
+     <element name="terminalResponses" type="tns1:ArrayOf_tns1_EnquireCashTerminalResponse"/>
+     <element name="totalTicketsPrinted" type="xsd:int"/>
+    </sequence>
+   </complexType>
+   <complexType name="IssueCreditResponse">
+    <sequence>
+     <element name="creditAmount" type="xsd:int"/>
+     <element name="eposOperationResult" type="tns1:EposOperationResult"/>
+    </sequence>
+   </complexType>
+   <complexType name="IssueTicketResponse">
+    <sequence>
+     <element name="creditAmount" type="xsd:int"/>
+     <element name="ticketRef" type="xsd:string"/>
+     <element name="eposOperationResult" type="tns1:EposOperationResult"/>
+    </sequence>
+   </complexType>
+   <complexType name="EnquireTicketResponse">
+    <sequence>
+     <element name="eposOperationResult" type="tns1:EposOperationResult"/>
+     <element name="barPosition" type="xsd:string"/>
+     <element name="ticketCreditAmount" type="xsd:int"/>
+     <element name="ticketRef" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="PayTicketResponse">
+    <sequence>
+     <element name="eposOperationResult" type="tns1:EposOperationResult"/>
+     <element name="barPosition" type="xsd:string"/>
+     <element name="ticketCreditAmount" type="xsd:int"/>
+     <element name="ticketRef" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="enquireValidMachineResponse">
+
+      <wsdl:part name="return" type="tns1:EposOperationResult">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="enquireTicketRequest">
+
+      <wsdl:part name="version" type="xsd:string">
+
+      </wsdl:part>
+
+      <wsdl:part name="ticketbarcode" type="xsd:string">
+
+      </wsdl:part>
+
+      <wsdl:part name="ticketref" type="xsd:string">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="issueTicketRequest">
+
+      <wsdl:part name="version" type="xsd:string">
+
+      </wsdl:part>
+
+      <wsdl:part name="creditamount" type="xsd:int">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="issueUnauthCreditResponse">
+
+      <wsdl:part name="return" type="tns1:IssueUnauthCreditResponse">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="issueTicketResponse">
+
+      <wsdl:part name="return" type="tns1:IssueTicketResponse">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="payTicketResponse">
+
+      <wsdl:part name="return" type="tns1:PayTicketResponse">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="issueCreditRequest">
+
+      <wsdl:part name="version" type="xsd:string">
+
+      </wsdl:part>
+
+      <wsdl:part name="barposition" type="xsd:string">
+
+      </wsdl:part>
+
+      <wsdl:part name="creditamount" type="xsd:int">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="issueUnauthCreditRequest">
+
+      <wsdl:part name="version" type="xsd:string">
+
+      </wsdl:part>
+
+      <wsdl:part name="barposition" type="xsd:string">
+
+      </wsdl:part>
+
+      <wsdl:part name="creditamount" type="xsd:int">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="enquireIssueCreditRequest">
+
+      <wsdl:part name="version" type="xsd:string">
+
+      </wsdl:part>
+
+      <wsdl:part name="barposition" type="xsd:string">
+
+      </wsdl:part>
+
+      <wsdl:part name="creditamount" type="xsd:int">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="enquireIssueUnauthCreditRequest">
+
+      <wsdl:part name="version" type="xsd:string">
+
+      </wsdl:part>
+
+      <wsdl:part name="barposition" type="xsd:string">
+
+      </wsdl:part>
+
+      <wsdl:part name="creditamount" type="xsd:int">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="issueCreditResponse">
+
+      <wsdl:part name="return" type="tns1:IssueCreditResponse">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="enquireIssueTicketRequest">
+
+      <wsdl:part name="version" type="xsd:string">
+
+      </wsdl:part>
+
+      <wsdl:part name="creditamount" type="xsd:int">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="enquireCashResponse">
+
+      <wsdl:part name="return" type="tns1:EnquireCashResponse">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="enquireAuthoriseTerminalResponse">
+
+      <wsdl:part name="return" type="tns1:EposOperationResult">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="enquireValidMachineRequest">
+
+      <wsdl:part name="version" type="xsd:string">
+
+      </wsdl:part>
+
+      <wsdl:part name="barposition" type="xsd:string">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="payTicketRequest">
+
+      <wsdl:part name="version" type="xsd:string">
+
+      </wsdl:part>
+
+      <wsdl:part name="ticketref" type="xsd:string">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="authoriseTerminalRequest">
+
+      <wsdl:part name="version" type="xsd:string">
+
+      </wsdl:part>
+
+      <wsdl:part name="barposition" type="xsd:string">
+
+      </wsdl:part>
+
+      <wsdl:part name="operation" type="xsd:string">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="enquireTicketResponse">
+
+      <wsdl:part name="return" type="tns1:EnquireTicketResponse">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="enquireIssueTicketResponse">
+
+      <wsdl:part name="return" type="tns1:EposOperationResult">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="enquireIssueCreditResponse">
+
+      <wsdl:part name="return" type="tns1:EposOperationResult">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="enquireAuthoriseTerminalRequest">
+
+      <wsdl:part name="version" type="xsd:string">
+
+      </wsdl:part>
+
+      <wsdl:part name="barposition" type="xsd:string">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="enquireIssueUnauthCreditResponse">
+
+      <wsdl:part name="return" type="tns1:EposOperationResult">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="authoriseTerminalResponse">
+
+      <wsdl:part name="return" type="tns1:AuthoriseTerminalResponse">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="enquireCashRequest">
+
+      <wsdl:part name="version" type="xsd:string">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="IEPOS">
+
+      <wsdl:operation name="enquireIssueUnauthCredit" parameterOrder="version barposition creditamount">
+
+         <wsdl:input message="impl:enquireIssueUnauthCreditRequest" name="enquireIssueUnauthCreditRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:enquireIssueUnauthCreditResponse" name="enquireIssueUnauthCreditResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="issueUnauthCredit" parameterOrder="version barposition creditamount">
+
+         <wsdl:input message="impl:issueUnauthCreditRequest" name="issueUnauthCreditRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:issueUnauthCreditResponse" name="issueUnauthCreditResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="enquireAuthoriseTerminal" parameterOrder="version barposition">
+
+         <wsdl:input message="impl:enquireAuthoriseTerminalRequest" name="enquireAuthoriseTerminalRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:enquireAuthoriseTerminalResponse" name="enquireAuthoriseTerminalResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="authoriseTerminal" parameterOrder="version barposition operation">
+
+         <wsdl:input message="impl:authoriseTerminalRequest" name="authoriseTerminalRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:authoriseTerminalResponse" name="authoriseTerminalResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="enquireValidMachine" parameterOrder="version barposition">
+
+         <wsdl:input message="impl:enquireValidMachineRequest" name="enquireValidMachineRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:enquireValidMachineResponse" name="enquireValidMachineResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="enquireCash" parameterOrder="version">
+
+         <wsdl:input message="impl:enquireCashRequest" name="enquireCashRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:enquireCashResponse" name="enquireCashResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="enquireIssueCredit" parameterOrder="version barposition creditamount">
+
+         <wsdl:input message="impl:enquireIssueCreditRequest" name="enquireIssueCreditRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:enquireIssueCreditResponse" name="enquireIssueCreditResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="issueCredit" parameterOrder="version barposition creditamount">
+
+         <wsdl:input message="impl:issueCreditRequest" name="issueCreditRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:issueCreditResponse" name="issueCreditResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="enquireIssueTicket" parameterOrder="version creditamount">
+
+         <wsdl:input message="impl:enquireIssueTicketRequest" name="enquireIssueTicketRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:enquireIssueTicketResponse" name="enquireIssueTicketResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="issueTicket" parameterOrder="version creditamount">
+
+         <wsdl:input message="impl:issueTicketRequest" name="issueTicketRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:issueTicketResponse" name="issueTicketResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="enquireTicket" parameterOrder="version ticketbarcode ticketref">
+
+         <wsdl:input message="impl:enquireTicketRequest" name="enquireTicketRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:enquireTicketResponse" name="enquireTicketResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="payTicket" parameterOrder="version ticketref">
+
+         <wsdl:input message="impl:payTicketRequest" name="payTicketRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:payTicketResponse" name="payTicketResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="IEPOSPortSoapBinding" type="impl:IEPOS">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="enquireIssueUnauthCredit">
+
+         <wsdlsoap:operation soapAction="urn:iepos.venueservice.fobt.inspiredgaming.com#enquireIssueUnauthCredit"/>
+
+         <wsdl:input name="enquireIssueUnauthCreditRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:iepos.venueservice.fobt.inspiredgaming.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="enquireIssueUnauthCreditResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://inspiredbroadcast.net/webservices/fobt/epos" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="issueUnauthCredit">
+
+         <wsdlsoap:operation soapAction="urn:iepos.venueservice.fobt.inspiredgaming.com#issueUnauthCredit"/>
+
+         <wsdl:input name="issueUnauthCreditRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:iepos.venueservice.fobt.inspiredgaming.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="issueUnauthCreditResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://inspiredbroadcast.net/webservices/fobt/epos" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="enquireAuthoriseTerminal">
+
+         <wsdlsoap:operation soapAction="urn:iepos.venueservice.fobt.inspiredgaming.com#enquireAuthoriseTerminal"/>
+
+         <wsdl:input name="enquireAuthoriseTerminalRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:iepos.venueservice.fobt.inspiredgaming.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="enquireAuthoriseTerminalResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://inspiredbroadcast.net/webservices/fobt/epos" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="authoriseTerminal">
+
+         <wsdlsoap:operation soapAction="urn:iepos.venueservice.fobt.inspiredgaming.com#authoriseTerminal"/>
+
+         <wsdl:input name="authoriseTerminalRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:iepos.venueservice.fobt.inspiredgaming.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="authoriseTerminalResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://inspiredbroadcast.net/webservices/fobt/epos" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="enquireValidMachine">
+
+         <wsdlsoap:operation soapAction="urn:iepos.venueservice.fobt.inspiredgaming.com#enquireValidMachine"/>
+
+         <wsdl:input name="enquireValidMachineRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:iepos.venueservice.fobt.inspiredgaming.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="enquireValidMachineResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://inspiredbroadcast.net/webservices/fobt/epos" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="enquireCash">
+
+         <wsdlsoap:operation soapAction="urn:iepos.venueservice.fobt.inspiredgaming.com#enquireCash"/>
+
+         <wsdl:input name="enquireCashRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:iepos.venueservice.fobt.inspiredgaming.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="enquireCashResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://inspiredbroadcast.net/webservices/fobt/epos" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="enquireIssueCredit">
+
+         <wsdlsoap:operation soapAction="urn:iepos.venueservice.fobt.inspiredgaming.com#enquireIssueCredit"/>
+
+         <wsdl:input name="enquireIssueCreditRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:iepos.venueservice.fobt.inspiredgaming.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="enquireIssueCreditResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://inspiredbroadcast.net/webservices/fobt/epos" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="issueCredit">
+
+         <wsdlsoap:operation soapAction="urn:iepos.venueservice.fobt.inspiredgaming.com#issueCredit"/>
+
+         <wsdl:input name="issueCreditRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:iepos.venueservice.fobt.inspiredgaming.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="issueCreditResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://inspiredbroadcast.net/webservices/fobt/epos" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="enquireIssueTicket">
+
+         <wsdlsoap:operation soapAction="urn:iepos.venueservice.fobt.inspiredgaming.com#enquireIssueTicket"/>
+
+         <wsdl:input name="enquireIssueTicketRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:iepos.venueservice.fobt.inspiredgaming.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="enquireIssueTicketResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://inspiredbroadcast.net/webservices/fobt/epos" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="issueTicket">
+
+         <wsdlsoap:operation soapAction="urn:iepos.venueservice.fobt.inspiredgaming.com#issueTicket"/>
+
+         <wsdl:input name="issueTicketRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:iepos.venueservice.fobt.inspiredgaming.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="issueTicketResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://inspiredbroadcast.net/webservices/fobt/epos" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="enquireTicket">
+
+         <wsdlsoap:operation soapAction="urn:iepos.venueservice.fobt.inspiredgaming.com#enquireTicket"/>
+
+         <wsdl:input name="enquireTicketRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:iepos.venueservice.fobt.inspiredgaming.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="enquireTicketResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://inspiredbroadcast.net/webservices/fobt/epos" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="payTicket">
+
+         <wsdlsoap:operation soapAction="urn:iepos.venueservice.fobt.inspiredgaming.com#payTicket"/>
+
+         <wsdl:input name="payTicketRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:iepos.venueservice.fobt.inspiredgaming.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="payTicketResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://inspiredbroadcast.net/webservices/fobt/epos" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="IEPOSservice">
+
+      <wsdl:port binding="impl:IEPOSPortSoapBinding" name="IEPOSPort">
+
+         <wsdlsoap:address location="http://172.28.23.port:15668/soap/IEPOS"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
